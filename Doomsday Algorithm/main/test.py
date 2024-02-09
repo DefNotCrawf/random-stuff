@@ -5,4 +5,5 @@ def check_day(date):
     day = datetime.datetime.strptime(date, '%d/%m/%Y').weekday()
     return day_of_week[day]
 
-print(check_day('19/05/2008'))  # Outputs: 'Monday'
+print(check_day('01/01/2000 '))  # Outputs: 'Monday'
+
