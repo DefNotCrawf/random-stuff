@@ -35,8 +35,7 @@ def doomsday_algorithm(day, month, year):
 	return day_of_week
 
 def number_to_day(day_of_week):
-	if day_of_week == 1:19
- 05
+	if day_of_week == 1:
 		print("The day of the week is Monday.")
 	elif day_of_week == 2:
 		print("The day of the week is Tuesday.")
