@@ -19,13 +19,21 @@ class collatz():
 		self.write_to_csv()
 
 	def write_to_csv(self):
-		with open('output.csv', 'w', newline='') as file:
-			writer = csv.writer(file)
-			writer.writerow(['Step', 'Number'])  # Add this line to write the header
-			writer.writerows(self.output)
+		try:
+			with open('output.csv', 'w', newline='') as file:
+				writer = csv.writer(file)
+				writer.writerow(['Step', 'Number'])  # Add this line to write the header
+				writer.writerows(self.output)
+		except PermissionError:
+			print("Permission denied: Unable to write to 'output.csv'. Please check if the file is open or write-protected.")
 
 	def get(self):
-		self.number = int(input("Enter a number: "))
+		while True:
+			try:
+				self.number = int(input("Enter a number: "))
+				break
+			except ValueError:
+				print("That's not a valid number! Please try again.")
 		if self.number < 1:
 			print("Invalid input")
 			self.get()
