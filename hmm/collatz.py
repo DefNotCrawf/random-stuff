@@ -19,7 +19,7 @@ class collatz():
 		self.write_to_csv()
 
 	def write_to_csv(self):
-		with open('c:/Users/Crawford/Desktop/hmm/output.csv', 'w', newline='') as file:
+		with open('output.csv', 'w', newline='') as file:
 			writer = csv.writer(file)
 			writer.writerow(['Step', 'Number'])  # Add this line to write the header
 			writer.writerows(self.output)

@@ -50,7 +50,7 @@ print(password)
 if input("Do you want to copy the password to clipboard? (y/n): ").lower() == "y":
 	pyperclip.copy(password)
 	print("Password copied to clipboard")
-	print("Clipboard will be cleared in 5 minutes. For users on Windows, a scheduled task has been created to clear the clipboard in 5 minutes. For users on other platforms, please clear the clipboard manually by running the command 'python clear_clipboard.py' in the terminal. Please note that manual clearing of clipboard may be needed.")
+	print(f"Clipboard will be cleared in 5 minutes. For users on Windows, a scheduled task has been created to clear the clipboard in 5 minutes. For users on other platforms, please clear the clipboard manually by running the command 'python clear_clipboard.py' in the terminal. Please note that manual clearing of clipboard may be needed.")
 	if platform.system() == 'Windows':
 		clear_time = (datetime.now() + timedelta(minutes=5)).strftime('%H:%M')
 		subprocess.call(f'schtasks /Create /SC ONCE /TN "ClearClipboard" /TR "python clear_clipboard.py && schtasks /Delete /TN \'ClearClipboard\' /F" /ST {clear_time}', shell=True)
