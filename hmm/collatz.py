@@ -26,6 +26,10 @@ class collatz():
 				writer.writerows(self.output)
 		except PermissionError:
 			print("Permission denied: Unable to write to 'output.csv'. Please check if the file is open or write-protected.")
+		with open('output.csv', 'w', newline='') as file:
+				writer = csv.writer(file)
+				writer.writerow(['Step', 'Number'])  # Add this line to write the header
+				writer.writerows(self.output)
 
 	def get(self):
 		while True:
