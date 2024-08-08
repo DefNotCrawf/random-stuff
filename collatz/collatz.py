@@ -3,6 +3,7 @@ import csv
 class collatz():
 	def __init__(self) -> None:
 		...
+	
 	def collatz(self) -> None:
 		i = 1
 		self.output = []
@@ -16,20 +17,22 @@ class collatz():
 				self.number = self.odd()
 				i += 1
 				self.output.append([i, self.number])
-		self.write_to_csv()
+		# self.write_to_csv()
+		self.write_to_terminal()
 
-	def write_to_csv(self):
-		try:
-			with open('output.csv', 'w', newline='') as file:
-				writer = csv.writer(file)
-				writer.writerow(['Step', 'Number'])  # Add this line to write the header
-				writer.writerows(self.output)
-		except PermissionError:
-			print("Permission denied: Unable to write to 'output.csv'. Please check if the file is open or write-protected.")
-		with open('output.csv', 'w', newline='') as file:
-				writer = csv.writer(file)
-				writer.writerow(['Step', 'Number'])  # Add this line to write the header
-				writer.writerows(self.output)
+	# def write_to_csv(self):
+	# 	try:
+	# 		with open('output.csv', 'w', newline='') as file:
+	# 			writer = csv.writer(file)
+	# 			writer.writerow(['Step', 'Number'])  # Add this line to write the header
+	# 			writer.writerows(self.output)
+	# 	except PermissionError:
+	# 		print("Permission denied: Unable to write to 'output.csv'. Please check if the file is open or write-protected.")
+
+	def write_to_terminal(self):
+		print("Step:\tNumber:")
+		for step, number in self.output:
+			print(f"{step}\t{number}")
 
 	def get(self):
 		while True:
@@ -47,9 +50,6 @@ class collatz():
 	
 	def odd(self):
 		return 3 * self.number + 1
-
-
-
 
 def main():
 	number = collatz()
