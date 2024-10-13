@@ -6,27 +6,21 @@ import random
 original_x, original_y = pyautogui.position()
 
 
-t_end = time.time() + 5
-time.sleep(1)
+t_end = time.time() + 10
 
 
 def move_randomly():
     while time.time() < t_end:
         # Generate random coordinates within your screen size
-        random_x = random.randint(75, 2483)
-        random_y = random.randint(256, 1457)
+        # random_x = random.randint(75, 2483)
+        # random_y = random.randint(256, 1457)
+        random_x = random.randint(0, pyautogui.size()[0])
+        random_y = random.randint(0, pyautogui.size()[1])
         print(f"{random_x}\t{random_y}", end="\n")
-        pyautogui.moveTo(random_x, random_y, duration=0.3)
+        pyautogui.moveTo(random_x, random_y, duration=0.1)
 # Function to move the mouse randomly
 
-pyautogui.moveTo(75, 256)
-pyautogui.mouseDown()
-
 move_randomly()
-
-pyautogui.mouseUp()
-
-
 
 # time.sleep(1)
 
