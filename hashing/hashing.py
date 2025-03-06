@@ -28,7 +28,7 @@ def create_user():
         else:
             break
 
-    salt = bcrypt.gensalt(rounds=12)
+    salt = bcrypt.gensalt(rounds=14)
     hashed_password = bcrypt.hashpw(password.encode("utf-8"), salt)
 
     try:

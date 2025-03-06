@@ -1,0 +1,67 @@
+{
+	"name": "Random Stuff",
+	// "image": "python:3.13", // backup for when below doesn't work.
+	"image": "python:latest", // should use the latest stable version
+	"hostRequirements": {
+		"cpus": 4
+	},
+	"waitFor": "onCreateCommand",
+	"updateContentCommand": "pip install --upgrade pip && pip install -r requirements.txt", // ensure that packages are installed
+	"postCreateCommand": "apt-get update && apt-get install -y python3 python3-pip",
+	"postAttachCommand": {},
+	"portsAttributes": {
+		"5000": {
+			"label": "Application",
+			"requireLocalPort": true
+		},
+		"4000": {
+			"label": "API",
+			"requireLocalPort": true
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"files.autoSave": "onFocusChange",
+				"editor.formatOnPaste": true,
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "esbenp.prettier-vscode",
+				"[python]": {
+					"editor.defaultFormatter": "ms-python.black-formatter"
+				},
+				"editor.fontSize": 16,
+				"terminal.integrated.defaultProfile.windows": "Git Bash",
+				"window.restoreWindows": "preserve",
+				"workbench.editorAssociations": {
+					"*.md": "vscode.markdown.preview.editor"
+				},
+				"editor.tabSize": 4,
+				"editor.insertSpaces": false
+			},
+			"extensions": [
+				"McCarter.start-git-bash",
+				"medo64.render-crlf",
+				"ecmel.vscode-ds",
+				"ms-vscode.js-debug",
+				"dbaeumer.vscode-eslint",
+				"miramac.vscode-exec-node",
+				"yy0931.vscode-sqlite3-editor",
+				"oderwat.indent-rainbow",
+				"ritwickdey.LiveServer",
+				"ms-vscode-remote.remote-containers",
+				"GitHub.codespaces",
+				"ms-vscode-remote.remote-wsl",
+				"ms-azuretools.vscode-docker",
+				"EchoAPI.echoapi-for-vscode",
+				"esbenp.prettier-vscode",
+				"ms-python.black-formatter",
+				"ms-python.python",
+				"njpwerner.autodocstring",
+				"mgesbert.python-path",
+				"eamodio.gitlens",
+				"wakatime.vscode-wakatime"
+			]
+		}
+	},
+	"forwardPorts": [5000, 4000]
+}

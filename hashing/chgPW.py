@@ -40,7 +40,7 @@ def changePW():
                 print("Password did not match.")
                 continue
 
-            salt = bcrypt.gensalt(rounds=12)
+            salt = bcrypt.gensalt(rounds=14)
             hashed_password = bcrypt.hashpw(newPass.encode("utf-8"), salt)
             cur.execute(
                 "UPDATE e50PMSBi_users SET D9K66_password = ? WHERE vX8hR_username = ? AND nzqCh_DoB = ?",
