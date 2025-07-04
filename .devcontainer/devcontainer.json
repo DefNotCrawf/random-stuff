@@ -1,12 +1,12 @@
 {
-	"name": "Random Stuff",
+	"name": "Random Stuff", // insert name here
 	// "image": "python:3.13", // backup for when below doesn't work.
 	"image": "python:latest", // should use the latest stable version
 	"hostRequirements": {
 		"cpus": 4
 	},
 	"waitFor": "onCreateCommand",
-	"updateContentCommand": "pip install --upgrade pip && pip install -r requirements.txt", // ensure that packages are installed
+	"updateContentCommand": "python -m pip install --upgrade pip && python -m pip install -r requirements.txt --upgrade",
 	"postCreateCommand": "apt-get update && apt-get install -y python3 python3-pip",
 	"postAttachCommand": {},
 	"portsAttributes": {
@@ -29,37 +29,53 @@
 				"[python]": {
 					"editor.defaultFormatter": "ms-python.black-formatter"
 				},
-				"editor.fontSize": 16,
+				"[xml]": {
+					"editor.defaultFormatter": "redhat.vscode-xml"
+				},
+				"editor.fontSize": 14,
 				"terminal.integrated.defaultProfile.windows": "Git Bash",
 				"window.restoreWindows": "preserve",
 				"workbench.editorAssociations": {
 					"*.md": "vscode.markdown.preview.editor"
 				},
 				"editor.tabSize": 4,
-				"editor.insertSpaces": false
+				"editor.insertSpaces": false,
+				"terminal.integrated.cursorStyle": "underline",
+				"terminal.integrated.cursorBlinking": true
 			},
 			"extensions": [
 				"McCarter.start-git-bash",
-				"medo64.render-crlf",
+				"yy0931.vscode-sqlite3-editor",
 				"ecmel.vscode-ds",
 				"ms-vscode.js-debug",
 				"dbaeumer.vscode-eslint",
 				"miramac.vscode-exec-node",
-				"yy0931.vscode-sqlite3-editor",
 				"oderwat.indent-rainbow",
-				"ritwickdey.LiveServer",
 				"ms-vscode-remote.remote-containers",
 				"GitHub.codespaces",
 				"ms-vscode-remote.remote-wsl",
-				"ms-azuretools.vscode-docker",
 				"EchoAPI.echoapi-for-vscode",
 				"esbenp.prettier-vscode",
 				"ms-python.black-formatter",
 				"ms-python.python",
+				"ms-python.debugpy",
+				"tomoki1207.pdf",
 				"njpwerner.autodocstring",
 				"mgesbert.python-path",
 				"eamodio.gitlens",
-				"wakatime.vscode-wakatime"
+				"wakatime.vscode-wakatime",
+				"yahyabatulu.vscode-markdown-alert",
+				"bierner.markdown-preview-github-styles",
+				"ms-toolsai.jupyter",
+				"mechatroner.rainbow-csv",
+				"ms-python.pylint",
+				"ms-toolsai.jupyter-keymap",
+				"ms-toolsai.jupyter-renderers",
+				"ms-toolsai.vscode-jupyter-slideshow",
+				"ms-python.vscode-python-envs",
+				"iliazeus.vscode-ansi",
+				"ms-vscode.notepadplusplus-keybindings",
+				"redhat.vscode-xml"
 			]
 		}
 	},
