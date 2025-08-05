@@ -5,20 +5,24 @@
 	"hostRequirements": {
 		"cpus": 4
 	},
-	"waitFor": "onCreateCommand",
-	"updateContentCommand": "python -m pip install --upgrade pip && python -m pip install -r requirements.txt --upgrade",
-	"postCreateCommand": "apt-get update && apt-get install -y python3 python3-pip",
-	"postAttachCommand": {},
-	"portsAttributes": {
-		"5000": {
-			"label": "Application",
-			"requireLocalPort": true
-		},
-		"4000": {
-			"label": "API",
-			"requireLocalPort": true
-		}
-	},
+	"waitFor": "onCreateCommand", // Wait for this command to complete before starting the container
+	"initializeCommand": "", // Runs on the host before the container is created
+	"onCreateCommand": "apt-get update && python -m pip install --upgrade pip", // Runs inside the container when it's first created
+	"updateContentCommand": "apt-get update && apt-get upgrade -y && apt-get autoremove -y", // Runs when the container content is updated
+	"postCreateCommand": "pip install -r requirements.txt", // Runs after the container is created and started; typically used to install python packages
+	"postStartCommand": "pip install -r requirements.txt --quiet --upgrade", // Runs every time the container starts; or could be to update python packages with the `--quiet` flag
+	"postAttachCommand": "echo \"HSC Practice Environment Ready! $(python --version) available.\"", // Runs when you attach/connect to the container
+	// "portsAttributes": {
+	// 	"5000": {
+	// 		"label": "Application",
+	// 		"requireLocalPort": true
+	// 	},
+	// 	"4000": {
+	// 		"label": "API",
+	// 		"requireLocalPort": true
+	// 	}
+	// },
+	// "forwardPorts": [5000, 4000], // Ports to forward from the container to the host
 	"customizations": {
 		"vscode": {
 			"settings": {
@@ -78,6 +82,5 @@
 				"redhat.vscode-xml"
 			]
 		}
-	},
-	"forwardPorts": [5000, 4000]
+	}
 }

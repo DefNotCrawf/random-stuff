@@ -2,10 +2,12 @@ import sqlite3 as sqlite
 import argon2
 from dotenv import load_dotenv
 
-import getpass
 import os
+import getpass
 import uuid
+import datetime
 
+load_dotenv()
 
 DATABASE_PATH: str = "./arg_hashing/user.db"
 
@@ -42,6 +44,7 @@ def validate_database_structure():
             "q2c3S_email": {"type": "TEXT", "notnull": 1, "pk": 0},
             "ASCiS_password": {"type": "TEXT", "notnull": 1, "pk": 0},
             "ACWws_DoB": {"type": "TEXT", "notnull": 1, "pk": 0},
+            "1d383_permission": {"type": "TEXT", "notnull": 1, "pk": 0},
         }
 
         # Validate each column
@@ -126,7 +129,8 @@ def create_table():
                     as9uc_username TEXT UNIQUE NOT NULL,
                     q2c3S_email TEXT UNIQUE NOT NULL,
                     ASCiS_password TEXT NOT NULL,
-                    ACWws_DoB TEXT NOT NULL
+                    ACWws_DoB TEXT NOT NULL,
+                    1d383_permission TEXT NOT NULL
                 );
                 """
             )
@@ -135,7 +139,8 @@ def create_table():
         except sqlite.OperationalError as e:
             print(f"Error 'sqlite.OperationalError' occurred: {e}")
             con.close()
-        except:
+        except Exception as e:
+            print(f"Unexpected error recreating database: {e}")
             con.close()
     else:
         print(f"Database already exists at '{DATABASE_PATH}'")
@@ -153,7 +158,8 @@ def create_table():
                         as9uc_username TEXT UNIQUE NOT NULL,
                         q2c3S_email TEXT UNIQUE NOT NULL,
                         ASCiS_password TEXT NOT NULL,
-                        ACWws_DoB TEXT NOT NULL
+                        ACWws_DoB TEXT NOT NULL,
+                        1d383_permission TEXT NOT NULL
                     );
                     """
                 )
@@ -169,9 +175,24 @@ def create_table():
             print("Database structure is valid.")
 
 
-def create_default_login():
+def create_admin_login():
     con = sqlite.connect(database=DATABASE_PATH)
-    cur = con.cursor
+    cur = con.cursor()
+
+    admin_details = {
+        "admin_username": os.getenv("admin_username"),
+        "admin_email": os.getenv("admin_email"),
+        "admin_password": os.getenv("admin_password"),
+        "admin_dob": os.getenv("admin_dob"),
+        "admin_permission": os.getenv("admin_permission", "admin"),
+    }
+
+    try:
+        pass
+    except Exception as e:
+        print(f"Unexpected error creating default login: {e}")
+    finally:
+        con.close()
 
 
 if __name__ == "__main__":
